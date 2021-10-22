@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _09_auth.Data;
+using _09_auth.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,7 @@ namespace _09_auth
 
             services.AddControllers();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<JwtService>();
             services.AddDbContext<UserDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
