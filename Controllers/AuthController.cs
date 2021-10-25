@@ -60,5 +60,23 @@ namespace _09_auth.Controllers
                message = "Success",
             });
         }
+
+        [HttpGet("user")]
+        public IActionResult User()
+        {
+            try
+            {
+                var jwt = Request.Cookies["jwt"];
+                var token = _jwtService.Virify(jwt);
+                var userId = int.Parse(token.Issuer);
+                var user = _repository.GetUserById(userId);
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+
+                return Unauthorized();
+            }
+        }
     }
 }

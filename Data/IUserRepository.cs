@@ -10,5 +10,6 @@ namespace _09_auth.Data
     {
         User Create(User user);
         User GetUserByEmail(string email);
+        User GetUserById(int id);
     }
 }
